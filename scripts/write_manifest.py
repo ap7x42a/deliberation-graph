@@ -14,6 +14,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 SKILL_ROOT = SCRIPT_DIR.parent
 MANIFEST = SKILL_ROOT / "SHA256SUMS.txt"
 EXCLUDED_NAMES = {"SHA256SUMS.txt"}
+EXCLUDED_DIRS = {".git", "__pycache__"}
 
 
 class ManifestError(RuntimeError):
@@ -30,7 +31,7 @@ def iter_files() -> Iterable[Path]:
         relative = path.relative_to(root)
         if relative.name in EXCLUDED_NAMES:
             continue
-        if "__pycache__" in relative.parts or relative.suffix in {".pyc", ".pyo"}:
+        if any(part in EXCLUDED_DIRS for part in relative.parts) or relative.suffix in {".pyc", ".pyo"}:
             continue
         resolved = path.resolve()
         try:

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Deliberation Graph"
+  short_description: "Explore competing branches for complex, high-impact, or failure-prone decisions."
+  default_prompt: "Use Deliberation Graph to frame a consequential decision, branch alternatives, attach evidence, critique candidates, and synthesize a traceable choice."
